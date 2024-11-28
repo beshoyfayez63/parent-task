@@ -1,0 +1,17 @@
+@for (toast of (toastService.toasts$ | async); track toast) {
+  <ngb-toast
+    [class]="toast.className"
+    [autohide]="true" [delay]="toast.delay || 5000"
+    (hidden)="toastService.remove(toast)"
+  >
+  <ng-template [ngTemplateOutlet]="toastTmpl" [ngTemplateOutletContext]="{$implicit: toast.body}">
+  </ng-template>
+  </ngb-toast>
+}
+
+<ng-template #toastTmpl let-body>
+  <span class="text-white">{{body}}</span>
+</ng-template>
+
+
+

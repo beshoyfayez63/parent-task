@@ -2,3 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+body,html, app-root {
+  height: 100vh;
+}

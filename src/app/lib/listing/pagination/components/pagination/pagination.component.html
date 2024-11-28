@@ -1,0 +1,52 @@
+<ng-container *ngIf="totalResults > 0">
+  <ng-container>
+  <span class="pagination__left pagination-item"
+        [class]="{disable: page <= 1}"
+        (click)="goToFirstPage()">
+    <span class="pi pi-angle-double-left"></span>
+  </span>
+    <span class="pagination__left pagination-item"
+          [class]="{disable: page <= 1}"
+          (click)="goToPrevPage()">
+    <span class="pi pi-angle-left"></span>
+  </span>
+  </ng-container>
+
+  <div class="pagination-item pagination-item-prev" (click)="changePage(page - 1)" *ngIf="page > 1">
+    {{ page - 1 }}
+  </div>
+  <div class="pagination-item active" (click)="changePage(page)">{{ page }}</div>
+  <div class="pagination-item pagination-item-next" (click)="changePage(page + 1)" *ngIf="page + 1 <= totalPages">
+    {{ page + 1 }}
+  </div>
+
+  <div class="pagination-item pagination-item-next-next" (click)="changePage(page + 2)"
+       *ngIf="page === 1 && totalResults > page + 2 * rpp">
+    {{ page + 2 }}
+  </div>
+  <div class="pagination-item-item-clip" (click)="changePage(clipPages)" *ngIf="page + 4 < totalPages - 1">
+    {{ clipPages }}
+  </div>
+  <div class="pagination-item pagination-item-total" (click)="changePage(totalPages)" *ngIf="
+            totalPages > 3 && page !== totalPages && page + 1 !== totalPages
+          ">
+    {{ totalPages }}
+  </div>
+
+  <ng-container>
+  <span
+    class="pagination-item"
+    [class]="{disable: page >= totalPages}"
+    (click)="goToNextPage()">
+    <span class="pi pi-angle-right"></span>
+  </span>
+    <span
+      class="pagination-item"
+      [class]="{disable: page >= totalPages}"
+      (click)="goToLastPage()"
+    >
+    <span class="pi pi-angle-double-right"></span>
+  </span>
+  </ng-container>
+
+</ng-container>
