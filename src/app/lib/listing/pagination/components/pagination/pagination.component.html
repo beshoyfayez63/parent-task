@@ -23,12 +23,13 @@
 				<div class="mb-3 d-flex flex-nowrap px-2">
 					<label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
 					<input
-						#i
+						#input
 						type="number"
 						inputmode="numeric"
 						pattern="[0-9]*"
 						class="form-control custom-pages-input"
 						id="paginationInput"
+            [value]="page"
 						[ngModel]="page"
             (ngModelChange)="changePage($event)"
 					/>

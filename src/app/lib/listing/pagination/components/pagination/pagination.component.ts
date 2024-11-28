@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, viewChild } from '@angular/core';
 import type { IPagination, IPaginationSettings } from "../../types/IPagination";
 
 @Component({
@@ -16,12 +16,14 @@ export class PaginationComponent implements IPagination {
   totalPages = 0;
   rpp = 6;
 
+  @ViewChild('input') input?: ElementRef<HTMLInputElement>
+
   @Output() onPageChanged = new EventEmitter<number>();
 
   changePage(page: number) {
-    console.log(page);
-    this.page = page;
-    this.onPageChanged.emit(page);
+    this.page = Math.min(page ?? 1, this.totalPages);
+    this.input!.nativeElement.value! = this.page.toString();
+    this.onPageChanged.emit(this.page);
   }
 
   setPagination(settings: IPaginationSettings) {

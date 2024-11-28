@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { IUser } from '../../interfaces/user.interface';
-import { CardConfig } from '../../config/card.config';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../../../../lib/listing/pagination/components/pagination/pagination.component';
 import { IPagination } from '../../../../lib/listing/pagination/types/IPagination';
-import { startWith, Subject, switchMap, takeUntil } from 'rxjs';
+import { debounce, distinctUntilChanged, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-list-user',
@@ -25,6 +24,7 @@ export class ListUserComponent implements AfterViewInit, OnDestroy {
     this.paginationComponent?.onPageChanged
     .pipe(
       startWith(1),
+      distinctUntilChanged(),
       switchMap(page => this.userService.fetchUsers(page)),
       takeUntil(this.destroy$)
     )
