@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ToastModule } from './lib/toast/toast.module';
+import { HeaderModule } from "./core/header/header.module";
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,10 @@ import { ToastModule } from './lib/toast/toast.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ToastModule.forRoot()
-  ],
+    CoreModule,
+    ToastModule.forRoot(),
+    HeaderModule
+],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
   ],

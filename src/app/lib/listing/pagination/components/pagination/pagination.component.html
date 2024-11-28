@@ -1,52 +1,40 @@
-<ng-container *ngIf="totalResults > 0">
-  <ng-container>
-  <span class="pagination__left pagination-item"
-        [class]="{disable: page <= 1}"
-        (click)="goToFirstPage()">
-    <span class="pi pi-angle-double-left"></span>
-  </span>
-    <span class="pagination__left pagination-item"
-          [class]="{disable: page <= 1}"
-          (click)="goToPrevPage()">
-    <span class="pi pi-angle-left"></span>
-  </span>
-  </ng-container>
+<!-- <ngb-pagination
+	[collectionSize]="totalPages"
+	[page]="page"
+  (pageChange)="page"
+  [pageSize]="rpp"
+	[rotate]="true"
+	[ellipses]="false"
+  size="sm"
+  (pageChange)="changePage($event)"
+	[boundaryLinks]="true"
+/> -->
 
-  <div class="pagination-item pagination-item-prev" (click)="changePage(page - 1)" *ngIf="page > 1">
-    {{ page - 1 }}
-  </div>
-  <div class="pagination-item active" (click)="changePage(page)">{{ page }}</div>
-  <div class="pagination-item pagination-item-next" (click)="changePage(page + 1)" *ngIf="page + 1 <= totalPages">
-    {{ page + 1 }}
-  </div>
 
-  <div class="pagination-item pagination-item-next-next" (click)="changePage(page + 2)"
-       *ngIf="page === 1 && totalResults > page + 2 * rpp">
-    {{ page + 2 }}
-  </div>
-  <div class="pagination-item-item-clip" (click)="changePage(clipPages)" *ngIf="page + 4 < totalPages - 1">
-    {{ clipPages }}
-  </div>
-  <div class="pagination-item pagination-item-total" (click)="changePage(totalPages)" *ngIf="
-            totalPages > 3 && page !== totalPages && page + 1 !== totalPages
-          ">
-    {{ totalPages }}
-  </div>
-
-  <ng-container>
-  <span
-    class="pagination-item"
-    [class]="{disable: page >= totalPages}"
-    (click)="goToNextPage()">
-    <span class="pi pi-angle-right"></span>
-  </span>
-    <span
-      class="pagination-item"
-      [class]="{disable: page >= totalPages}"
-      (click)="goToLastPage()"
-    >
-    <span class="pi pi-angle-double-right"></span>
-  </span>
-  </ng-container>
-
-</ng-container>
+<ngb-pagination
+  [collectionSize]="totalResults"
+  [page]="page"
+  (pageChange)="changePage($event)"
+  [boundaryLinks]="true"
+>
+	<ng-template ngbPaginationPages let-page let-pages="pages">
+		@if (pages.length > 0) {
+			<li class="ngb-custom-pages-item">
+				<div class="mb-3 d-flex flex-nowrap px-2">
+					<label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+					<input
+						#i
+						type="number"
+						inputmode="numeric"
+						pattern="[0-9]*"
+						class="form-control custom-pages-input"
+						id="paginationInput"
+						[ngModel]="page"
+            (ngModelChange)="changePage($event)"
+					/>
+					<span id="paginationDescription" class="col-form-label text-nowrap px-2"> of {{ pages.length }}</span>
+				</div>
+			</li>
+		}
+	</ng-template>
+</ngb-pagination>

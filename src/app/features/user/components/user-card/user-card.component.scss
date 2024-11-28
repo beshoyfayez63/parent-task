@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #ccc;
+  padding: 10px;
+  cursor: pointer;
+  height: fit-content;
+  border: 1px solid transparent;
+  transform: scale(1);
+  transition: border-color 0.2s, transform 0.2s;
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .user-details, .details-container {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-details {
+    align-items: center;
+    font-size: 14px;
+  }
+  img {
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 2px;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+  }
+}

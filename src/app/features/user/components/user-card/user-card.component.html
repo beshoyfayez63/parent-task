@@ -1,0 +1,10 @@
+<div class="user-details">
+  <div class="img-container">
+    <img [src]="user?.avatar" [alt]="user?.first_name">
+  </div>
+  <div class="details-container">
+    <div class="user-id"><span class="text-bold">ID: </span> {{user?.id}}</div>
+    <div class="user-name"><span class="text-bold">Full Name: </span>{{user?.first_name}} {{user?.last_name}}</div>
+    <div class="user-email"><span class="text-bold">Email: </span>{{user?.email}}</div>
+  </div>
+</div>

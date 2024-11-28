@@ -8,7 +8,12 @@ import { ILoginError, ILoginSuccess } from "../interfaces/login-res.interface";
 export class AuthService {
   http = inject(HttpClient);
 
-  readonly token$ = new BehaviorSubject<string | null>(null);
+  private token = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  readonly token$ = this.token.asObservable();
+
+  isLogin() {
+    return !!this.token.value;
+  }
 
   login(email: string, password: string) {
     return this.http.post<ILoginSuccess | ILoginError>(`${environment.baseUrl}/login`, {
@@ -17,7 +22,8 @@ export class AuthService {
     }).pipe(
       tap(data => {
         if('token' in data) {
-          this.token$.next(data.token);
+          this.token.next(data.token);
+          localStorage.setItem('token', data.token);
         }
       }),
       catchError((err: HttpErrorResponse) => {
@@ -27,6 +33,7 @@ export class AuthService {
   }
 
   logout() {
-    this.token$.next(null);
+    this.token.next(null);
+    localStorage.removeItem('token')
   }
 }

@@ -1,0 +1,7 @@
+<div class="header d-flex">
+  <div class="header-container w-100">
+    <div class="ms-auto me-5">
+      <button class="btn btn-outline-light" *ngIf="(authService.token$ | async)" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>

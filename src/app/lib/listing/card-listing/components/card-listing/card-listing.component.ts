@@ -5,7 +5,7 @@ import {
   OnInit,
   TemplateRef
 } from '@angular/core';
-import { ICardListConfig } from "../../types/ICardListConfig";
+import { ICardListConfig } from "../../types/card-list-config.interface";
 import { Observable, startWith, switchMap } from "rxjs";
 import { IPagination } from "../../../pagination/types/IPagination";
 

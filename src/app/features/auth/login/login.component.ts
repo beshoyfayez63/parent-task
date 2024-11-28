@@ -6,6 +6,7 @@ import { finalize, Subject, takeUntil } from 'rxjs';
 import { ToastService } from '../../../lib/toast/service/toast.service';
 import { ILoginError } from '../interfaces/login-res.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent implements OnDestroy {
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
+  private router = inject(Router)
   loading = false;
   private destroy$ = new Subject<void>()
 
@@ -44,7 +46,8 @@ export class LoginComponent implements OnDestroy {
       finalize(() => this.loading = false)
     ).subscribe({
       next: (_) => {
-        this.toastService.show({ className: 'bg-success', body: 'You are logged in successfully.'})
+        this.toastService.show({ className: 'bg-success', body: 'You are logged in successfully.'});
+        this.router.navigate([''])
       },
       error: (err: ILoginError) => {
         this.toastService.show({ className: 'bg-danger', body: err.error})

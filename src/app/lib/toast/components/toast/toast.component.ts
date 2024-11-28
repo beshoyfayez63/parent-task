@@ -6,8 +6,8 @@ import { ToastService } from '../../service/toast.service';
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   host: {
-    class: 'toast-container position-fixed top-0 end-0 p-3',
-    style: 'z-index: 1200'
+    class: 'toast-container position-fixed end-0 p-3',
+    style: 'z-index: 1200; top: 3rem'
   }
 })
 export class ToastComponent {
