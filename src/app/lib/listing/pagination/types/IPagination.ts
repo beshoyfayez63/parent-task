@@ -11,6 +11,5 @@ export interface IPagination {
 
 export interface IPaginationSettings {
   totalItems: number;
-  totalPages: number;
-  rpp: number;
+  totalPages?: number;
 }

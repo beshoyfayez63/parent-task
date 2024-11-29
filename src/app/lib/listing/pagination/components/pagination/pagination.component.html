@@ -1,18 +1,6 @@
-<!-- <ngb-pagination
-	[collectionSize]="totalPages"
-	[page]="page"
-  (pageChange)="page"
-  [pageSize]="rpp"
-	[rotate]="true"
-	[ellipses]="false"
-  size="sm"
-  (pageChange)="changePage($event)"
-	[boundaryLinks]="true"
-/> -->
-
-
 <ngb-pagination
   [collectionSize]="totalResults"
+  [pageSize]="rpp"
   [page]="page"
   (pageChange)="changePage($event)"
   [boundaryLinks]="true"

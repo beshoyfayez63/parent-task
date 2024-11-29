@@ -4,7 +4,7 @@
   box-shadow: 0 0 5px #ccc;
   padding: 10px;
   cursor: pointer;
-  height: fit-content;
+  min-height: 250px;
   border: 1px solid transparent;
   transform: scale(1);
   transition: border-color 0.2s, transform 0.2s;
@@ -22,12 +22,23 @@
     align-items: center;
     font-size: 14px;
   }
-  img {
+  .img-container img {
     border-radius: 50%;
     border: 1px solid #ccc;
     padding: 2px;
     width: 110px;
     height: 110px;
     object-fit: cover;
+  }
+}
+
+.btn-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  img {
+    width: 100%;
+    height: 100%;
   }
 }

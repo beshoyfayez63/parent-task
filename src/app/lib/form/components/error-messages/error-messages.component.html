@@ -1,0 +1,7 @@
+@for(message of (messages | keyvalue); track message;) {
+  @if(!!message['value']) {
+    <div class="text-danger" >
+      {{message.value}}
+    </div>
+  }
+}

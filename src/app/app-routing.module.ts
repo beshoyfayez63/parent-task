@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuardFn } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  // {path: '', redirectTo: '/users', pathMatch: 'full'},
+  {path: '', redirectTo: '/users', pathMatch: 'full'},
   {
-    path: '',
+    path: 'users',
     loadChildren: () => import('./features/user/user.module').then(({UserModule}) => UserModule),
     canActivate: [authGuardFn]
   },

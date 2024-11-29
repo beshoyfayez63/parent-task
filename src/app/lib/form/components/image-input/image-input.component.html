@@ -1,0 +1,30 @@
+<div class="d-flex flex-column justify-content-center">
+  <input
+    type="file"
+    style="display: none"
+    #fileInput
+    (change)="filePickerChanged($event)"
+  />
+
+  <div class="input-control__img-preview d-flex align-items-center justify-content-center" (click)="addImage()">
+    @if(!imageSrc && !fileBase64) {
+      <button class="add-btn">
+        <img src="/assets/plus.svg" alt="add">
+      </button>
+    }
+    @if(imageSrc) {
+      <img
+        [src]="imageSrc"
+        alt=""
+        class="input-control__img"
+      />
+    }
+    @if(fileBase64) {
+      <img
+        [src]="fileBase64"
+        alt=""
+        class="input-control__img"
+      />
+    }
+  </div>
+</div>

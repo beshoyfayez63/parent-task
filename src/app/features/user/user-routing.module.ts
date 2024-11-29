@@ -8,26 +8,26 @@ import { CreateUserComponent } from './pages/create-user/create-user.component';
 
 const routes: Routes = [
   // {path: '', redirectTo: '/users', pathMatch: 'full'},
-  {path: '', redirectTo: 'users', pathMatch: 'full'},
-  {path: 'users', component: ListUserComponent},
+  // {path: '', redirectTo: 'users', pathMatch: 'full'},
+  {path: '', component: ListUserComponent},
   {
-    path: 'users/:id',
-    component: ViewUserComponent,
-    resolve: {
-      user: fetchUserResolver
-    }
-  },
-  {
-    path: 'edit-user/:id',
+    path: 'edit/:id',
     component: UpdateUserComponent,
     resolve: {
       user: fetchUserResolver
     }
   },
   {
-    path: 'create-user',
+    path: 'create',
     component: CreateUserComponent,
-  }
+  },
+  {
+    path: 'view/:id',
+    component: ViewUserComponent,
+    resolve: {
+      user: fetchUserResolver
+    }
+  },
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import type { IPagination, IPaginationSettings } from "../../types/IPagination";
 
 @Component({
@@ -22,14 +22,17 @@ export class PaginationComponent implements IPagination {
 
   changePage(page: number) {
     this.page = Math.min(page ?? 1, this.totalPages);
+    // Using this line to enforce user to enter a value in input text less than or equal totalPages
     this.input!.nativeElement.value! = this.page.toString();
     this.onPageChanged.emit(this.page);
   }
 
   setPagination(settings: IPaginationSettings) {
-    this.totalPages = settings.totalPages;
     this.totalResults = settings.totalItems;
-    this.rpp = settings.rpp;
+    this.totalPages = Math.ceil(this.totalResults / this.rpp);
+    if(this.totalPages !== settings.totalPages) {
+      this.onPageChanged.emit(this.page);
+    }
   }
 
   getCurrentPage() {

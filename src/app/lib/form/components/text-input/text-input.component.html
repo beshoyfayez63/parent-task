@@ -1,0 +1,12 @@
+<input
+  [type]="type"
+  [(ngModel)]="value"
+  (ngModelChange)="onInputChange($event)"
+  (blur)="onTouch()"
+  (input)="onTouch()"
+  [ngClass]="{
+    'form-control': true,
+    'is-invalid': ngControl?.invalid && ngControl?.touched
+  }"
+/>
+<app-error-messages [messages]="messages"></app-error-messages>

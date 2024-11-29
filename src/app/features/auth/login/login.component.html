@@ -4,29 +4,29 @@
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" id="email" [ngClass]="{
-          'form-control': true,
-          'is-invalid': loginForm.controls.email.invalid && loginForm.controls.email.touched
-        }" formControlName="email" placeholder="name@example.com">
-      </div>
-      <div class="text-danger" *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
-        Please provide a valid email.
+        <app-text-input
+          type="email"
+          formControlName="email"
+          [messages]="{
+            email: loginForm.controls.email.invalid && loginForm.controls.email.touched ?'Please provide a valid email.' : null
+          }"
+        >
+        </app-text-input>
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input
+        <app-text-input
           type="password"
-          [ngClass]="{
-            'form-control': true,
-            'is-invalid': loginForm.controls.password.invalid && loginForm.controls.password.touched
-          }" formControlName="password" id="password" />
-      </div>
-      <div class="text-danger" *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
-        Please provide a valid password.
+          formControlName="password"
+          [messages]="{
+            password: loginForm.controls.password.invalid && loginForm.controls.password.touched ?'Please provide a valid email.' : null
+          }"
+        >
+        </app-text-input>
       </div>
 
-      <button type="submit" class="btn btn-light w-100" [disabled]="loginForm.invalid">
+      <button type="submit" class="btn btn-warning w-100" [disabled]="loginForm.invalid">
         <span *ngIf="!loading">Login</span>
         <div *ngIf="loading" class="spinner-border text-dark" role="status">
           <span class="visually-hidden">Loading...</span>

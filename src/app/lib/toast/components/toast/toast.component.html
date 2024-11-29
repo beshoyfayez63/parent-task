@@ -4,13 +4,21 @@
     [autohide]="true" [delay]="toast.delay || 3000"
     (hidden)="toastService.remove(toast)"
   >
-  <ng-template [ngTemplateOutlet]="toastTmpl" [ngTemplateOutletContext]="{$implicit: toast.body}">
-  </ng-template>
+    @if(toast.templateRef) {
+      <ng-template [ngTemplateOutlet]="toast.templateRef" [ngTemplateOutletContext]="toast"></ng-template>
+    }
+    @else {
+      <ng-template [ngTemplateOutlet]="toastTmpl" [ngTemplateOutletContext]="{$implicit: toast}">
+      </ng-template>
+    }
   </ngb-toast>
 }
 
-<ng-template #toastTmpl let-body>
-  <span class="text-white">{{body}}</span>
+<ng-template #toastTmpl let-toast>
+  <div class="d-flex align-items-center justify-content-between">
+    <span class="text-white">{{toast.body}}</span>
+    <button class="btn btn-link text-white" (click)="toastService.remove(toast)">Close</button>
+  </div>
 </ng-template>
 
 

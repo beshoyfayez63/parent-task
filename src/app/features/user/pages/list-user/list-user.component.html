@@ -1,12 +1,19 @@
-<div class="container my-5">
-  <div class="row g-3">
-    <div class="col-4" *ngFor="let user of (userService.users$ | async); trackBy: trackUser">
-      <app-user-card
-        [user]="user" (click)="goToUserDetailsPage(user.id)"
-      />
+<div class="container mt-5 mb-4">
+  @if(loading) {
+    <app-loading-spinner [styles]="{width: '4rem', height: '4rem'}"></app-loading-spinner>
+  }
+  @if(!loading && (userService.users$ | async); as users) {
+    <div class="row g-3">
+      <div class="col-md-3 col-sm-6" *ngFor="let user of (userService.users$ | async);">
+        <app-user-card
+          [user]="user"
+          (click)="goToUserDetailsPage(user.id)"
+          (onDelete)="onUserDeleted($event)"
+          (onEdit)="onEdit($event)"
+        />
+      </div>
     </div>
-
-  </div>
+  }
 </div>
 
 <app-pagination #pagination></app-pagination>

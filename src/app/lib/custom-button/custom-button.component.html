@@ -1,0 +1,6 @@
+<button (click)="onBtnClicked.emit($event)" [type]="type" [class]="'btn w-100 ' + classNames" [disabled]="disabled">
+  <span *ngIf="!loading">{{btnText}}</span>
+  <div *ngIf="loading" class="spinner-border text-white" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</button>

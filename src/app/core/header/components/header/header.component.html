@@ -1,5 +1,9 @@
 <div class="header d-flex">
   <div class="header-container w-100">
+    <div class="links ms-5 ">
+      <a routerLink="/users" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="bt btn-link text-white link-item">Users</a>
+      <a routerLink="/users/create" routerLinkActive="active" class="bt btn-link text-white ms-4 link-item">Create user</a>
+    </div>
     <div class="ms-auto me-5">
       <button class="btn btn-outline-light" *ngIf="(authService.token$ | async)" (click)="logout()">Logout</button>
     </div>

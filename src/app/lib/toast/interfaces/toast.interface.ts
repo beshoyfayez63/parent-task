@@ -2,7 +2,8 @@ import { TemplateRef } from "@angular/core";
 
 export interface IToast {
   header?: string;
-  body: string;
+  body?: string;
+  templateRef?: TemplateRef<IToast>;
   delay?: number,
   className?: string;
 }

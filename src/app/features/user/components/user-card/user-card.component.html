@@ -3,8 +3,17 @@
     <img [src]="user?.avatar" [alt]="user?.first_name">
   </div>
   <div class="details-container">
-    <div class="user-id"><span class="text-bold">ID: </span> {{user?.id}}</div>
-    <div class="user-name"><span class="text-bold">Full Name: </span>{{user?.first_name}} {{user?.last_name}}</div>
-    <div class="user-email"><span class="text-bold">Email: </span>{{user?.email}}</div>
+    <div class="user-id"><span class="fw-bold">ID: </span> {{user?.id}}</div>
+    <div class="user-name"><span class="fw-bold">Full Name: </span>{{user?.first_name}} {{user?.last_name}}</div>
+    <div class="user-email"><span class="fw-bold">Email: </span>{{user?.email}}</div>
   </div>
+</div>
+
+<div class="user-actions mt-2 d-flex align-items-center justify-content-center">
+  <button class="btn-icon bg-danger me-2" (click)="deleteItem($event)">
+    <img src="/assets/delete.svg" width="30" height="30" alt="delete">
+  </button>
+  <button class="btn-icon bg-warning" (click)="onEditItem($event)">
+    <img src="/assets/edit.svg" width="30" height="30" alt="delete">
+  </button>
 </div>

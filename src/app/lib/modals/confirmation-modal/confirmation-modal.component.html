@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="modal.dismiss(false)"
+  ></button>
+</div>
+<div class="modal-body">
+  <ng-container *ngIf="modalBody" [ngTemplateOutlet]="modalBody"></ng-container>
+  <ng-container *ngIf="!modalBody" [ngTemplateOutlet]="defaultModalBody"></ng-container>
+</div>
+<div class="modal-footer">
+  <ng-container
+    *ngIf="modalActions"
+    [ngTemplateOutlet]="modalActions"
+    [ngTemplateOutletContext]="modal"
+  >
+  </ng-container>
+  <ng-container *ngIf="!modalActions" [ngTemplateOutlet]="defaultModalActions"></ng-container>
+</div>
+
+<ng-template #defaultModalBody>
+  <p>{{modalBodyText}}</p>
+</ng-template>
+
+<ng-template #defaultModalActions>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="modal.dismiss('cancel click')">{{cancelBtnText}}</button>
+  <button type="button" class="btn btn-danger" (click)="modal.close(true)">Cofirm</button>
+</ng-template>

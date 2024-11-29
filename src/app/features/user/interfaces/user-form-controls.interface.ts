@@ -1,6 +1,8 @@
 import { FormControl } from "@angular/forms";
 
 export interface IUserFormControls {
-  name: FormControl<string | undefined>;
-  job: FormControl<string | undefined>;
+  firstName: FormControl<string | undefined>;
+  lastName: FormControl<string | undefined>;
+  email: FormControl<string | undefined>;
+  avatar: FormControl<File | undefined | null>
 }

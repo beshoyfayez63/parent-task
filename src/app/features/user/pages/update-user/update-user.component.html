@@ -1,1 +1,58 @@
-<p>update-user works!</p>
+<app-back-button></app-back-button>
+<div class="container update-form mt-4">
+  <h1>Update User</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">First name</label>
+      <app-text-input
+        formControlName="firstName"
+        [messages]="{
+          required:
+            formGroup.controls.firstName.invalid && formGroup.controls.firstName.touched ?
+              'First name is required' : null
+        }"
+      >
+      </app-text-input>
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Last name</label>
+      <app-text-input
+        formControlName="lastName"
+        [messages]="{
+          required: formGroup.controls.lastName.invalid && formGroup.controls.lastName.touched ?
+            'Last name is required' : null
+        }"
+      >
+      </app-text-input>
+    </div>
+
+    <div class="form-group mt-2">
+      <label>Email</label>
+      <app-text-input
+        type="email"
+        formControlName="email"
+        [messages]="{
+          required: formGroup.controls.email.invalid && formGroup.controls.email.touched ?
+            'Email is required' : null
+        }"
+      >
+      </app-text-input>
+    </div>
+
+    <div class="form-group">
+      <app-image-input formControlName="avatar" [imageSrc]="user.avatar"></app-image-input>
+    </div>
+
+    <app-custom-button
+    type="submit"
+    [disabled]="formGroup.invalid"
+    [loading]="loading"
+    btnText="Update user"
+    class="w-100"
+    classNames="btn-warning mt-3"
+  >
+  </app-custom-button>
+  </form>
+</div>
+
