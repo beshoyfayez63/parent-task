@@ -18,12 +18,7 @@ export class UserCardComponent {
 
   async deleteItem(event: Event) {
     event.stopPropagation()
-    const modalRef = this.modalService.open(ConfirmationModalComponent)
-    modalRef.componentInstance.title = 'User Deletion';
-    try {
-      const res = await modalRef.result;
-      this.onDelete.emit(this.user);
-    } catch(err) {}
+
   }
 
   onEditItem(event: Event) {

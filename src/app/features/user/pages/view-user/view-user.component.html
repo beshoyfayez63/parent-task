@@ -1,9 +1,21 @@
 <app-back-button></app-back-button>
-<div class="user-details" *ngIf="(user | async) as _user">
-  <app-user-card
-    [user]="_user"
-    class="user-card"
-    (onEdit)="router.navigate(['/users/edit', _user!.id])"
-    (onDelete)="deleteUser(_user.id)"
-  />
+<div class="user-details d-flex flex-column align-items-center" *ngIf="(user | async) as _user">
+  <h2>{{_user.first_name}} {{_user.last_name}}</h2>
+  <div class="d-flex align-items-center">
+    <span class="user-info">Email: </span>
+    <span class="ms-3 info">{{_user.email}}</span>
+  </div>
+  <div class="img-container mt-3">
+    <img class="w-100 h-100" [src]="_user.avatar" [alt]="_user.first_name + ' ' + _user.last_name">
+  </div>
+
+
+  <div class="mt-2 d-flex align-items-center justify-content-center">
+  <button class="btn-icon bg-danger me-2" (click)="deleteAction(_user.id)">
+    <img src="/assets/delete.svg" width="30" height="30" alt="delete">
+  </button>
+  <button class="btn-icon bg-warning" (click)="editAction(_user!.id)">
+    <img src="/assets/edit.svg" width="30" height="30" alt="delete">
+  </button>
+</div>
 </div>

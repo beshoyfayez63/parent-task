@@ -4,6 +4,8 @@ import { map, Observable } from "rxjs";
 import { IUser } from '../../interfaces/user.interface';
 import { UserService } from '../../services/user.service';
 import { ToastService } from '../../../../lib/toast/service/toast.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from '../../../../lib/modals/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-view-user',
@@ -16,6 +18,7 @@ export class ViewUserComponent {
   private userService = inject(UserService);
   private toast = inject(ToastService);
   router = inject(Router);
+  private modalService = inject(NgbModal);
 
   user: Observable<IUser> = this.activatedRoute.data.pipe(map((data) => data['user']));
 
@@ -26,5 +29,18 @@ export class ViewUserComponent {
         this.router.navigate(['/users'])
       }
     });
+  }
+
+  async deleteAction(userId: number) {
+    const modalRef = this.modalService.open(ConfirmationModalComponent)
+    modalRef.componentInstance.title = 'User Deletion';
+    const res = await modalRef.result;
+    if(res) {
+      this.deleteUser(userId)
+    }
+  }
+
+  editAction(userId: number) {
+    this.router.navigate(['/users/edit', userId]);
   }
 }

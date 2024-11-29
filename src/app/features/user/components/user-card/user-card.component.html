@@ -3,9 +3,18 @@
     <img [src]="user?.avatar" [alt]="user?.first_name">
   </div>
   <div class="details-container">
-    <div class="user-id"><span class="fw-bold">ID: </span> {{user?.id}}</div>
-    <div class="user-name"><span class="fw-bold">Full Name: </span>{{user?.first_name}} {{user?.last_name}}</div>
-    <div class="user-email"><span class="fw-bold">Email: </span>{{user?.email}}</div>
+    <div class="detail-item">
+      <span class="fw-bold label">ID: </span>
+      <span class="value">{{user?.id}}</span>
+    </div>
+    <div class="detail-item">
+      <span class="fw-bold label">Full Name: </span>
+      <span class="value">{{user?.first_name}} {{user?.last_name}}</span>
+    </div>
+    <div class="detail-item">
+      <span class="fw-bold label">Email: </span>
+      <span class="value">{{user?.email}}</span>
+    </div>
   </div>
 </div>
 

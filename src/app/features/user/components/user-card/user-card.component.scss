@@ -16,6 +16,7 @@
     gap: 5px;
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .user-details {
@@ -32,13 +33,18 @@
   }
 }
 
-.btn-icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: none;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+.detail-item {
+  display: flex;
+  gap: 10px
 }
+.label {
+  width: 60px;
+}
+.value {
+  width: 100%;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
