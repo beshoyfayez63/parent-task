@@ -3,12 +3,14 @@ import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { ILoginError, ILoginSuccess } from "../interfaces/login-res.interface";
+import { LocalStorageService } from "../../../core/localstorage.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   http = inject(HttpClient);
+  localStorage = inject(LocalStorageService)
 
-  private token = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  private token = new BehaviorSubject<string | null>(this.localStorage.get('token'));
   readonly token$ = this.token.asObservable();
 
   isLogin() {
@@ -23,7 +25,8 @@ export class AuthService {
       tap(data => {
         if('token' in data) {
           this.token.next(data.token);
-          localStorage.setItem('token', data.token);
+          // localStorage.setItem('token', data.token);
+          this.localStorage.set('token', data.token)
         }
       }),
       catchError((err: HttpErrorResponse) => {
@@ -34,6 +37,6 @@ export class AuthService {
 
   logout() {
     this.token.next(null);
-    localStorage.removeItem('token')
+    this.localStorage.remove('token')
   }
 }
