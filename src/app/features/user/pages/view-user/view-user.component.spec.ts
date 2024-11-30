@@ -11,7 +11,6 @@
 //     await TestBed.configureTestingModule({
 //       declarations: [ViewUserComponent],
 //     })
-//     .compileComponents();
 
 //     fixture = TestBed.createComponent(ViewUserComponent);
 //     component = fixture.componentInstance;

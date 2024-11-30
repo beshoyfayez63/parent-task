@@ -2,16 +2,18 @@
   @if(loading) {
     <app-loading-spinner [styles]="{width: '4rem', height: '4rem'}"></app-loading-spinner>
   }
-  @if(!loading && (userService.users$ | async); as users) {
+  @if(!loading && (users$ | async); as users) {
     <div class="row g-3">
-      <div class="col-md-3 col-sm-6" *ngFor="let user of (userService.users$ | async);">
-        <app-user-card
-          [user]="user"
-          (click)="goToUserDetailsPage(user.id)"
-          (onDelete)="onUserDeleted($event)"
-          (onEdit)="onEdit($event)"
-        />
-      </div>
+      @for(user of (users$ | async); track user.id) {
+        <div class="col-md-3 col-sm-6">
+          <app-user-card
+            [user]="user"
+            (click)="goToUserDetailsPage(user.id)"
+            (onDelete)="onUserDeleted($event)"
+            (onEdit)="onEdit($event)"
+          />
+        </div>
+      }
     </div>
   }
 </div>

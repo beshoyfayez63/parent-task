@@ -4,7 +4,7 @@ import { IUser } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../../../../lib/listing/pagination/components/pagination/pagination.component';
 import { IPagination, IPaginationSettings } from '../../../../lib/listing/pagination/types/IPagination';
-import { distinctUntilChanged, finalize, Subject, switchMap, takeUntil } from 'rxjs';
+import { distinctUntilChanged, finalize, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { IUsersRes } from '../../interfaces/user-res.interface';
 import { ToastService } from '../../../../lib/toast/service/toast.service';
 import { IToast } from '../../../../lib/toast/interfaces/toast.interface';
@@ -22,6 +22,8 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
   paginationData?: IPaginationSettings;
 
   loading = true;
+
+  users$ = this.userService.users$;
 
   @ViewChild(PaginationComponent) paginationComponent?:IPagination;
   @ViewChild('success') successToast?: TemplateRef<IToast>
@@ -59,10 +61,6 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
   private fetchUsers(page = 1) {
     this.loading = true;
     return this.userService.fetchUsers(page).pipe(finalize(() => this.loading = false));
-  }
-
-  trackUser(_: number, item: IUser) {
-    return item.id;
   }
 
   onEdit(userId: number) {
