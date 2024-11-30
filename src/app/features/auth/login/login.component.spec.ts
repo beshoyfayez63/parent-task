@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { AuthService } from '../services/auth.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FormModule } from '../../../lib/form/form.module';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ import { TextInputComponent } from '../../../lib/form/components/text-input/text
 import { ILoginFormControls } from '../interfaces/login-form-controls.interface';
 import { ToastService } from '../../../lib/toast/service/toast.service';
 import { Router } from '@angular/router';
-import { catchError, of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { ILoginError, ILoginSuccess } from '../interfaces/login-res.interface';
 
 describe('LoginComponent', () => {
