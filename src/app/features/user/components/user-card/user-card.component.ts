@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { IUser } from '../../interfaces/user.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../../../../lib/modals/confirmation-modal/confirmation-modal.component';
@@ -7,6 +7,7 @@ import { ConfirmationModalComponent } from '../../../../lib/modals/confirmation-
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserCardComponent {
   private modalService = inject(NgbModal);
@@ -21,7 +22,7 @@ export class UserCardComponent {
     const modalRef = this.modalService.open(ConfirmationModalComponent)
     modalRef.componentInstance.title = 'User Deletion';
     try {
-      const res = await modalRef.result;
+      await modalRef.result;
       this.onDelete.emit(this.user);
     } catch(err) {}
   }
