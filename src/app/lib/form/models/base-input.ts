@@ -4,8 +4,8 @@ import { ControlValueAccessor, NgControl } from "@angular/forms";
 @Directive()
 export class BaseInput<T = any> implements ControlValueAccessor {
   value: T | undefined | null;
-  onChange: (value: T | null | undefined) => void = () => {};
-  onTouch: () => void = () => {};
+  protected onChange: (value: T | null | undefined) => void = () => {};
+  protected onTouch: () => void = () => {};
   isDisabled = false;
 
   injector = inject(Injector);

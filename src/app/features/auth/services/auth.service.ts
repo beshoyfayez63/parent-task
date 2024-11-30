@@ -25,7 +25,6 @@ export class AuthService {
       tap(data => {
         if('token' in data) {
           this.token.next(data.token);
-          // localStorage.setItem('token', data.token);
           this.localStorage.set('token', data.token)
         }
       }),
