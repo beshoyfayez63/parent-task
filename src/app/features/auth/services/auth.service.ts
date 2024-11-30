@@ -3,7 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { ILoginError, ILoginSuccess } from "../interfaces/login-res.interface";
-import { LocalStorageService } from "../../../core/localstorage.service";
+import { LocalStorageService } from "../../../core/services/localstorage.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
