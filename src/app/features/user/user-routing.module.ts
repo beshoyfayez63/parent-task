@@ -5,28 +5,36 @@ import { ViewUserComponent } from './pages/view-user/view-user.component';
 import { fetchUserResolver } from './resolvers/fetch-user.resolver';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { MainLayoutComponent } from '../../core/layout/main-layout/main-layout.component';
 
 const routes: Routes = [
-  // {path: '', redirectTo: '/users', pathMatch: 'full'},
-  // {path: '', redirectTo: 'users', pathMatch: 'full'},
-  {path: '', component: ListUserComponent},
   {
-    path: 'edit/:id',
-    component: UpdateUserComponent,
-    resolve: {
-      user: fetchUserResolver
-    }
-  },
-  {
-    path: 'create',
-    component: CreateUserComponent,
-  },
-  {
-    path: 'view/:id',
-    component: ViewUserComponent,
-    resolve: {
-      user: fetchUserResolver
-    }
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ListUserComponent
+      },
+      {
+        path: 'edit/:id',
+        component: UpdateUserComponent,
+        resolve: {
+          user: fetchUserResolver
+        }
+      },
+      {
+        path: 'create',
+        component: CreateUserComponent,
+      },
+      {
+        path: 'view/:id',
+        component: ViewUserComponent,
+        resolve: {
+          user: fetchUserResolver
+        }
+      },
+    ]
   },
 ];
 
