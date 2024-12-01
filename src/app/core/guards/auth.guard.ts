@@ -5,9 +5,7 @@ import { AuthService } from "../../features/auth/services/auth.service";
 export const authGuardFn: CanActivateFn = async (_, state) => {
   const router = inject(Router);
   const authService = inject(AuthService);
-
   const isLogin = authService.isLogin();
-
   if(isLogin) {
     return !!state.url.includes('users') || await router.navigate([''])
   } else {
